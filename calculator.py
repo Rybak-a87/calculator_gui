@@ -3,12 +3,21 @@ from random import randint
 
 
 class Calculator:
-    def __init__(self, root):
+    def __init__(self):
+        self.root = tkinter.Tk()
+        # заголовок окна
+        self.root.title("Калькулятор")
+        # запрет на изменение размера окна
+        self.root.resizable(False, False)
+        # размер окна и место появления
+        self.root.geometry("300x400+800+200")
+        self.root["bg"] = "Gray"
+
         self.symbol_display = "0"
         self.symbol_little_display = ""
-        self.little_display = tkinter.Label(root, font="Arial 8", width=47, bg="Gray",
+        self.little_display = tkinter.Label(self.root, font="Arial 8", width=47, bg="Gray",
                                             anchor="e", text=self.symbol_little_display)
-        self.display = tkinter.Label(root, font="Arial 25", width=15,
+        self.display = tkinter.Label(self.root, font="Arial 25", width=15,
                                      anchor="e", text=self.symbol_display,)
         self.little_display.place(relx=0.5, rely=0.02, anchor="n")
         self.display.place(relx=0.5, rely=0.06, anchor="n", height=65)
@@ -91,15 +100,11 @@ class Calculator:
         self.display["text"] = self.symbol_display[:16]
         self.little_display["text"] = self.symbol_little_display
 
+    # запуск приложения
+    def start(self):
+        self.root.mainloop()
+
 
 if __name__ == "__main__":
-    root = tkinter.Tk()
-    # заголовок окна
-    root.title("Калькулятор")
-    # запрет на изменение размера окна
-    root.resizable(False, False)
-    # размер окна и место появления
-    root.geometry("300x400+800+200")
-    root["bg"] = "Gray"
-    calc = Calculator(root)
-    root.mainloop()
+    calc = Calculator()
+    calc.start()
